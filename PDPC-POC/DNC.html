@@ -184,56 +184,102 @@
 <!-- ============================= -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
- 
+
     var attentionModal = new bootstrap.Modal(document.getElementById('attentionModal'), {
         backdrop: 'static',
         keyboard: false
     });
- 
-    // Show modal on page load
+
     attentionModal.show();
- 
+
     // YES → show Pega form
     document.getElementById("individualComplaintButton").addEventListener("click", function () {
         document.getElementById("pegaContainer").style.display = "block";
         attentionModal.hide();
- 
-        // Wait for mashup to render, then start watcher
         startPegaWatcher();
     });
- 
+
     // -----------------------------------------
-    // 🔥 REMOVE PEGA SECONDARY SUMMARY FIELD
+    // WATCH PEGA LOAD
     // -----------------------------------------
     function startPegaWatcher() {
         const interval = setInterval(() => {
             const pegaEmbed = document.querySelector('pega-embed');
             if (!pegaEmbed || !pegaEmbed.shadowRoot) return;
- 
-            clearInterval(interval); // Stop checking once found
- 
+
+            clearInterval(interval);
             const shadow = pegaEmbed.shadowRoot;
- 
-            const removeTarget = () => {
-                const el = shadow.querySelector('[data-testid=":summary-item:secondary"]');
-                if (el) {
-                    el.remove();
-                    console.log("Removed :summary-item:secondary");
-                }
-            };
- 
-            // Remove immediately
-            removeTarget();
- 
-            // Watch for re-renders
-            const observer = new MutationObserver(removeTarget);
-            observer.observe(shadow, { childList: true, subtree: true });
+
+            removeSummaryField(shadow);
+            observeCaseCompletion(shadow);
+
         }, 500);
     }
- 
+
+    // -----------------------------------------
+    // REMOVE SECONDARY SUMMARY FIELD
+    // -----------------------------------------
+    function removeSummaryField(shadow) {
+        const removeTarget = () => {
+            const el = shadow.querySelector('[data-testid=":summary-item:secondary"]');
+            if (el) el.remove();
+        };
+
+        removeTarget();
+        const observer = new MutationObserver(removeTarget);
+        observer.observe(shadow, { childList: true, subtree: true });
+    }
+
+    // -----------------------------------------
+    // SHOW SUCCESS ONLY AFTER CASE REALLY ENDS
+    // -----------------------------------------
+    function observeCaseCompletion(shadow) {
+
+        const successHTML = `
+            <div class="success-message" style="   text-align: center;
+    padding: 50px 20px;
+    animation: fadeIn 0.5s ease-in-out;">
+                <div class="success-icon" style="width: 100px;
+    height: 100px;
+    margin: 0 auto 25px;
+    background: #28a745;
+    color: white;
+    border-radius: 50%;
+    font-size: 50px;
+    line-height: 100px;
+    font-weight: bold;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);">✓</div>
+                <div class="success-text" style="  font-size: 22px;
+    font-weight: 600;
+    color: #155724;">Your case is completed successfully</div>
+            </div>
+        `;
+
+        const checkCompletion = () => {
+            const article = shadow.querySelector('article');
+            if (!article) return;
+
+            const formExists = article.querySelector('form');
+            const assignmentHeader = article.querySelector('[data-testid="assignment-header"]');
+
+            // Only show success if form is gone AND assignment header gone
+            if (!formExists && !assignmentHeader && !article.dataset.successShown) {
+                article.dataset.successShown = "true";
+                article.innerHTML = successHTML;
+            }
+        };
+
+        // Run periodically because Pega re-renders
+        const observer = new MutationObserver(checkCompletion);
+        observer.observe(shadow, { childList: true, subtree: true });
+
+        setInterval(checkCompletion, 1000);
+    }
+
 });
 </script>
  
  
 </body>
+
 </html>
