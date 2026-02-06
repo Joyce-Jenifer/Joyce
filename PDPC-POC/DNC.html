@@ -4,79 +4,59 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>PDPC - Data Breach Notification</title>
- 
+
 <link href="https://eservice.pdpc.gov.sg/case/resources/img/pdpc.ico" rel="Shortcut Icon">
- 
+
 <link href="./PDPC_files/bootstrap.min.css" rel="stylesheet">
 <link href="./PDPC_files/bootstrap-datepicker3.min.css" rel="stylesheet">
 <link href="custom.css" rel="stylesheet">
- 
+
 <script src="./PDPC_files/jquery.min.js"></script>
 <script src="./PDPC_files/bootstrap.bundle.min.js"></script>
 </head>
- 
-<body style="display: flex;flex-direction: column;justify-content: space-between;height: 100vh;">
+
+<body style="display:flex;flex-direction:column;justify-content:space-between;height:100vh;">
+
+<!-- ================= HEADER ================= -->
 <div>
-<div class="container padding-left-right-15" >
- 
-    <!-- HEADER CONTENT (unchanged) -->
+<div class="container padding-left-right-15">
+
     <div class="row">
         <div class="col-sm-6 d-flex justify-content-around">
             <a href="https://www.pdpc.gov.sg/home">
                 <img src="./PDPC_files/logo.png" alt="PDPC">
             </a>
- 
-        <div style="margin-top: 22px;"><strong style="text-decoration: underline;">Who We Are</strong></div>
+            <div style="margin-top:22px;">
+                <strong style="text-decoration:underline;">Who We Are</strong>
+            </div>
         </div>
-        
-        <div class="col-md-6 d-none d-sm-none d-md-block">
- 
-            <!-- <div class="row">
-                <div class="col-lg-12 col-md-12" style="padding-right:0">
-                    <a href="http://www.gov.sg/" style="float:right;"><img  title="Singapore Government" alt="Singapore Government" src="/case/resources/images/sggovtonlinelogo.png">
-                          </a>
-                </div>
-                <div class="col-lg-12 col-md-12" style="margin-bottom:-15px;padding-right:0">
-                    <ul class="top-menu">
-                        <li><a href="https://www.pdpc.gov.sg/Contact-Us" onclick="window.open(this.href);return false;"><b>Contact Us</b></a></li>
-                        <li><b>.</b></li>
-                        <li><a href="https://go.gov.sg/pdpc-feedback" onclick="window.open(this.href);return false;"><b>Feedback</b></a></li>
-                    </ul>
-                </div>
-            </div> -->
+
+        <div class="col-md-6 d-none d-md-block">
             <div class="row justify-content-end">
- 
                 <div class="col-lg-5 col-md-5 padding-left-right-15">
-                    <div class="input-group input-group-sm" style="margin-right: -20px;">
-                        <input type="text" class="form-control" id="search-generic-input" placeholder="Search">
+                    <div class="input-group input-group-sm" style="margin-right:-20px;">
+                        <input type="text" class="form-control" placeholder="Search">
                         <span class="input-group-btn">
-                            <button class="btn btn-default" id="search-generic-btn" type="button" style="height:calc(1.5em + .5rem + 8px);">
+                            <button class="btn btn-default" type="button">
                                 <img src="https://eservice.pdpc.gov.sg/case/resources/img/search.svg">
                             </button>
                         </span>
                     </div>
                 </div>
             </div>
- 
         </div>
     </div>
- 
+
 </div>
 <div class="banner-bar"></div>
 </div>
- 
- 
- 
- 
- 
-    <!-- ============================= -->
-    <!-- 🔹 PEGA CONTAINER (HIDDEN) -->
-    <!-- ============================= -->
- 
-    <div id="pegaContainer" style="display:none;">
-        <div class="container padding-left-right-15" style="margin:40px auto">
+
+<!-- ================= PEGA CONTAINER (VISIBLE) ================= -->
+<div id="pegaContainer">
+    <div class="container padding-left-right-15" style="margin:40px auto">
+
         <script src="https://areteans-i25-plf.pegatsdemo.com/prweb/PRRestService/c11nsvc/v1/pega-embed.js"></script>
- 
+
         <pega-embed id="theEmbed"
             action="createCase"
             caseTypeID="Cred-IMDA-Work-DNCRequest"
@@ -84,120 +64,68 @@
             casePage="assignment"
             appAlias="imda"
             pegaServerUrl="https://areteans-i25-plf.pegatsdemo.com/prweb/"
-            UserIdentifier='Daniel Tan' 
-            Password='cnVsZXM='
+            UserIdentifier="Daniel Tan"
+            Password="cnVsZXM="
             autoReauth="true"
-            assignmentHeader='false'
+            assignmentHeader="false"
             authService="pega"
             clientId="75564243042876277339"
             style="width:100%">
         </pega-embed>
+
+    </div>
+</div>
+
+<!-- ================= FOOTER ================= -->
+<div class="container-footer" style="margin-top:auto">
+<div class="container">
+
+    <div class="row footer d-none d-sm-flex">
+        <div class="col-lg-12" style="font-size:16px;margin-top:10px;">
+            PERSONAL DATA PROTECTION COMMISSION
+        </div>
+
+        <div class="col-lg-12">
+            <ul class="footer-list" style="float:right;">
+                <li><a href="https://go.gov.sg/pdpc-feedback" target="_blank">Feedback</a></li>
+                <li>.</li>
+                <li><a href="https://www.pdpc.gov.sg/contact-us" target="_blank">Contact Us</a></li>
+            </ul>
         </div>
     </div>
- 
-<div class="container-footer" style="margin-top:auto">
-            <div class="container" style="padding-left:0; padding-right:0">
- 
-                <div class="row footer d-none d-sm-flex" style="margin-top:0">
-                    <div class="col-lg-12" style="font-size:16px; margin-top:10px;">
-                        PERSONAL DATA PROTECTION COMMISSION
-                    </div>
- 
-                    <div class="col-lg-12">
-                        <ul class="footer-list" style="float:right; margin:0 0 0 -105px;">
-                            <li><a href="https://go.gov.sg/pdpc-feedback" onclick="window.open(this.href);return false;">Feedback</a></li>
-                            <li>.</li>
-                            <li><a href="https://www.pdpc.gov.sg/contact-us" onclick="window.open(this.href);return false;">Contact Us</a></li>
-                            <li>.</li>
-                        </ul>
-                    </div>
-                </div>
- 
-                <hr style="margin:0px">
- 
-                <div class="row footer d-none d-sm-flex" style="margin-top:0">
-                    <div class="col-lg-12">
-                        <ul class="footer-list" style="float:left; margin-left:-105px;">
-                            <li><a href="https://tech.gov.sg/report_vulnerability" onclick="window.open(this.href);return false;">Report Vulnerability</a></li>
-                            <li>.</li>
-                            <li><a href="https://www.pdpc.gov.sg/privacy-statement" onclick="window.open(this.href);return false;">Privacy Statement</a></li>
-                            <li>.</li>
-                            <li><a href="https://www.pdpc.gov.sg/terms-and-conditions" onclick="window.open(this.href);return false;">Terms of Use</a></li>
-                            <li>.</li>
-                            <li><a href="https://www.reach.gov.sg/" onclick="window.open(this.href);return false;">REACH</a></li>
-                            <li>.</li>
-                            <li><a href="https://www.gov.sg/" onclick="window.open(this.href);return false;">Gov.sg</a></li>
-                            <li>.</li>
-                        </ul>
-                    </div>
- 
-                    <div class="col-lg-12">
-                        <div class="footerRight" style="margin-top:8px">
-                            <p>© 2024 Government of Singapore.</p>
-                        </div>
-                    </div>
- 
-                    <div class="col-lg-12">
-                        <p style="margin-top:-15px" class="footerRight">
-                            Last updated on 27 November 2025
-                        </p>
-                    </div>
- 
-                    <div class="col-lg-12">
-                        <p style="margin-top:-15px" class="footerRight">
-                            Best supported by Microsoft Edge, Firefox and Chrome.
-                        </p>
-                    </div>
-                </div>
- 
-            </div>
-       
-<div>
-</div>
-</div>
- 
-<!-- ============================= -->
-<!-- 🔹 ATTENTION MODAL -->
-<!-- ============================= -->
-<div class="modal fade" id="attentionModal" tabindex="-1">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title">Attention</h5>
-      </div>
-      <div class="modal-body">
-        You are submitting a data breach incident to PDPC and other sector regulators on behalf of your organisation.<br><br>
-        Click <b>Yes</b> to proceed.<br>
-        If you are an individual submitting a DNC complaint, click <b>DNC Complaint</b>.
-      </div>
-      <div class="modal-footer">
-        <button class="btn btn-primary" id="yesButton">Yes</button>
-        <button class="btn btn-secondary" data-bs-dismiss="modal">No</button>
-        <button class="btn btn-warning" id="individualComplaintButton">DNC Complaint</button>
-      </div>
+
+    <hr>
+
+    <div class="row footer d-none d-sm-flex">
+        <div class="col-lg-12">
+            <ul class="footer-list">
+                <li><a href="https://tech.gov.sg/report_vulnerability" target="_blank">Report Vulnerability</a></li>
+                <li>.</li>
+                <li><a href="https://www.pdpc.gov.sg/privacy-statement" target="_blank">Privacy Statement</a></li>
+                <li>.</li>
+                <li><a href="https://www.pdpc.gov.sg/terms-and-conditions" target="_blank">Terms of Use</a></li>
+                <li>.</li>
+                <li><a href="https://www.reach.gov.sg/" target="_blank">REACH</a></li>
+                <li>.</li>
+                <li><a href="https://www.gov.sg/" target="_blank">Gov.sg</a></li>
+            </ul>
+        </div>
+
+        <div class="col-lg-12 footerRight">
+            <p>© 2024 Government of Singapore.</p>
+            <p>Last updated on 27 November 2025</p>
+            <p>Best supported by Microsoft Edge, Firefox and Chrome.</p>
+        </div>
     </div>
-  </div>
+
 </div>
- 
-<!-- ============================= -->
-<!-- 🔹 SCRIPT -->
-<!-- ============================= -->
+</div>
+
+<!-- ================= SCRIPT ================= -->
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-    var attentionModal = new bootstrap.Modal(document.getElementById('attentionModal'), {
-        backdrop: 'static',
-        keyboard: false
-    });
-
-    attentionModal.show();
-
-    // YES → show Pega form
-    document.getElementById("individualComplaintButton").addEventListener("click", function () {
-        document.getElementById("pegaContainer").style.display = "block";
-        attentionModal.hide();
-        startPegaWatcher();
-    });
+    startPegaWatcher();
 
     // -----------------------------------------
     // WATCH PEGA LOAD
@@ -212,7 +140,6 @@ document.addEventListener("DOMContentLoaded", function () {
 
             removeSummaryField(shadow);
             observeCaseCompletion(shadow);
-
         }, 500);
     }
 
@@ -226,32 +153,24 @@ document.addEventListener("DOMContentLoaded", function () {
         };
 
         removeTarget();
-        const observer = new MutationObserver(removeTarget);
-        observer.observe(shadow, { childList: true, subtree: true });
+        new MutationObserver(removeTarget)
+            .observe(shadow, { childList: true, subtree: true });
     }
 
     // -----------------------------------------
-    // SHOW SUCCESS ONLY AFTER CASE REALLY ENDS
+    // SHOW SUCCESS AFTER CASE COMPLETION
     // -----------------------------------------
     function observeCaseCompletion(shadow) {
 
         const successHTML = `
-            <div class="success-message" style="   text-align: center;
-    padding: 50px 20px;
-    animation: fadeIn 0.5s ease-in-out;">
-                <div class="success-icon" style="width: 100px;
-    height: 100px;
-    margin: 0 auto 25px;
-    background: #28a745;
-    color: white;
-    border-radius: 50%;
-    font-size: 50px;
-    line-height: 100px;
-    font-weight: bold;
-    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);">✓</div>
-                <div class="success-text" style="  font-size: 22px;
-    font-weight: 600;
-    color: #155724;">Thank you!! Your request has been submitted.</div>
+            <div style="text-align:center;padding:50px 20px;">
+                <div style="
+                    width:100px;height:100px;margin:0 auto 25px;
+                    background:#28a745;color:#fff;border-radius:50%;
+                    font-size:50px;line-height:100px;font-weight:bold;">✓</div>
+                <div style="font-size:22px;font-weight:600;color:#155724;">
+                    Thank you!! Your request has been submitted.
+                </div>
             </div>
         `;
 
@@ -260,27 +179,22 @@ document.addEventListener("DOMContentLoaded", function () {
             if (!article) return;
 
             const formExists = article.querySelector('form');
-            const assignmentHeader = article.querySelector('[data-testid="assignment-header"]');
+            const headerExists = article.querySelector('[data-testid="assignment-header"]');
 
-            // Only show success if form is gone AND assignment header gone
-            if (!formExists && !assignmentHeader && !article.dataset.successShown) {
+            if (!formExists && !headerExists && !article.dataset.successShown) {
                 article.dataset.successShown = "true";
                 article.innerHTML = successHTML;
             }
         };
 
-        // Run periodically because Pega re-renders
-        const observer = new MutationObserver(checkCompletion);
-        observer.observe(shadow, { childList: true, subtree: true });
+        new MutationObserver(checkCompletion)
+            .observe(shadow, { childList: true, subtree: true });
 
         setInterval(checkCompletion, 1000);
     }
 
 });
 </script>
- 
- 
+
 </body>
-
 </html>
-
