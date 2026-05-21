@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>GovConnect Grants Portal</title>
+ 
+  <!-- Google Font -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+ 
+  <!-- Tailwind -->
+<script src="https://cdn.tailwindcss.com"></script>
+ 
+  <!-- Font Awesome -->
+<link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+ 
+  <style>
+ 
+    body{
+      font-family:'Inter',sans-serif;
+      overflow-x:hidden;
+    }
+ 
+    .gradient-bg{
+      background:
+      radial-gradient(circle at top left,#fff3ef,transparent 30%),
+      radial-gradient(circle at bottom right,#dbeafe,transparent 30%),
+      #f8fafc;
+    }
+ 
+    .grant-card:hover{
+      transform:translateY(-8px);
+      box-shadow:0 15px 40px rgba(255,83,39,0.15);
+    }
+ 
+    .fade-up{
+      animation:fadeUp 1s ease;
+    }
+ 
+    @keyframes fadeUp{
+      from{
+        opacity:0;
+        transform:translateY(40px);
+      }
+      to{
+        opacity:1;
+        transform:translateY(0px);
+      }
+    }
+ 
+    .chatbot{
+      animation:pulse 2s infinite;
+    }
+ 
+    @keyframes pulse{
+      0%{transform:scale(1);}
+      50%{transform:scale(1.05);}
+      100%{transform:scale(1);}
+    }
+ 
+  </style>
+ 
+</head>
+ 
+<body class="gradient-bg text-gray-800">
+ 
+<!-- NAVBAR -->
+<nav class="fixed top-0 w-full z-50 bg-white/90 backdrop-blur-lg border-b border-orange-100 px-8 py-4 flex items-center justify-between shadow-sm">
+ 
+  <!-- LEFT -->
+<div class="flex items-center gap-4">
+    <a href="https://www.credera.com/en-in" style="display:flex;align-items:center;text-decoration:none;">
+      <svg version="1.1" xmlns="http://www.w3.org/2000/svg" viewBox="15 22 420 74" height="40" style="display:block;"><path fill="#EC603D" d="M72.003128,64.911301 C72.003098,57.129772 72.003098,49.841003 72.003098,42.277077 C60.561825,42.277077 49.517460,42.277077 38.234459,42.277077 C38.234459,53.404087 38.234459,64.331223 38.234459,75.865662 C47.398716,75.865662 56.614391,75.865662 66.104401,75.865662 C66.104401,81.054428 66.104401,85.646553 66.104401,90.620270 C51.935944,90.620270 37.739590,90.620270 23.271521,90.620270 C23.271521,69.542015 23.271521,48.507343 23.271521,27.237885 C44.405941,27.237885 65.323280,27.237885 86.619186,27.237885 C86.619186,41.393730 86.619186,55.588093 86.619186,70.091537 C81.968292,70.091537 77.379990,70.091537 72.003151,70.091537 C72.003151,68.561913 72.003151,66.982986 72.003128,64.911301 z"/><path fill="#EC603D" d="M72.475494,90.511673 C72.144447,85.696548 72.144447,81.221092 72.144447,76.374634 C76.913185,76.374634 81.626793,76.374634 86.673752,76.374634 C86.673752,81.018906 86.673752,85.730782 86.673752,90.851326 C82.004738,90.851326 77.405640,90.851326 72.475494,90.511673 z"/><path fill="#EC623F" d="M138.611786,77.971336 C141.666199,75.523582 145.086197,73.588440 146.779099,70.656197 C148.561798,67.568466 150.270157,66.231033 153.713669,66.548347 C156.330170,66.789444 158.986710,66.596169 161.621582,66.596169 C161.587326,79.557846 148.101349,90.820686 132.938782,90.990829 C115.341881,91.188271 102.496567,78.631996 101.978714,60.727379 C101.423454,41.529560 113.265121,27.791235 130.984940,27.075264 C146.936874,26.430723 161.016205,37.191723 161.876450,51.391083 C158.255127,51.391083 154.651917,51.551025 151.079269,51.291096 C150.042328,51.215656 148.605377,50.151676 148.178986,49.178444 C144.069855,39.799339 134.292938,37.810959 127.851891,39.731098 C119.816216,42.126617 115.534386,48.593861 115.358383,58.570457 C115.099480,73.247406 124.705658,81.431343 138.611786,77.971336 z"/><path fill="#EC613E" d="M293.152374,77.983582 C293.152435,82.096039 293.152435,85.712143 293.152435,89.222466 C283.343353,90.851860 282.708405,90.604797 280.650940,84.653671 C271.107910,92.658005 259.740875,92.655655 251.770111,84.647697 C243.966156,76.807297 243.505173,60.699650 250.837753,52.068291 C258.489838,43.060833 269.813873,42.075832 280.847717,50.076157 C280.847717,45.872345 280.847717,42.174313 280.847717,38.476280 C280.847717,34.848534 280.847717,31.220789 280.847717,27.298843 C284.967346,27.298843 288.708862,27.298843 293.152313,27.298843 C293.152313,44.039639 293.152313,60.763435 293.152374,77.983582 M276.738403,57.667053 C270.939606,54.263008 266.111389,54.320297 262.110565,57.840637 C258.048737,61.414665 256.820770,67.945183 259.186707,73.390511 C261.192047,78.005959 265.776123,80.641525 270.852356,80.005753 C275.317932,79.446465 278.749939,77.120300 280.180023,72.895386 C281.969360,67.608849 281.692871,62.415512 276.738403,57.667053 z"/><path fill="#EC613E" d="M396.146667,90.814835 C383.019257,88.858849 377.304688,82.969307 375.561707,70.000687 C374.230225,60.093826 379.600128,49.941895 388.829926,46.172199 C396.452911,43.058777 403.771362,44.020962 410.235809,50.149097 C412.242950,42.117325 418.197327,46.883938 422.741211,45.404156 C422.741211,60.496895 422.741211,74.892441 422.741211,89.251831 C413.307037,90.893486 411.898743,90.415535 410.723236,86.139534 C406.015839,87.699005 401.284912,89.266266 396.146667,90.814835 M403.409302,79.288116 C409.925354,77.644547 412.584412,68.798828 410.018524,62.373108 C408.244049,57.929230 404.318085,55.042477 399.239410,55.172821 C394.328339,55.298874 390.591064,57.569489 388.912750,62.298794 C385.020966,73.265327 392.841125,82.407112 403.409302,79.288116 z"/><path fill="#EC613E" d="M326.805573,45.694862 C336.317963,48.251526 343.200958,59.590279 341.516449,70.239182 C331.242432,70.239182 320.852509,70.239182 310.298676,70.239182 C309.904358,75.109077 312.409973,78.294159 315.785248,79.197235 C318.688080,79.973885 322.234406,78.381363 325.489258,77.797577 C330.173370,76.957436 334.851196,76.082077 339.937775,75.147110 C337.922028,85.043503 327.682587,91.796707 317.765686,90.789978 C306.509583,89.647308 298.577515,82.145729 297.108795,71.254250 C295.601349,60.075577 301.015137,49.554710 311.349762,46.121887 C315.941101,44.596798 321.383026,45.632305 326.805573,45.694862 M315.737671,63.019787 C319.946625,63.019787 324.155579,63.019787 328.675934,63.019787 C327.099609,57.760529 324.162750,55.011272 319.462677,55.111134 C314.702209,55.212280 311.496735,57.798191 310.123840,63.019791 C311.918457,63.019791 313.371796,63.019791 315.737671,63.019787 z"/><path fill="#EC613E" d="M235.617401,51.416374 C237.647583,56.202213 239.573364,60.673225 241.153702,65.263184 C242.712860,69.791702 240.158218,70.545433 236.262665,70.460587 C227.638275,70.272766 219.006973,70.402122 210.403091,70.402122 C210.085983,77.828163 217.524765,83.279953 222.896408,79.184998 C228.327698,75.044563 233.790604,76.455757 239.405731,76.029022 C237.933960,84.500908 228.319183,91.293694 218.605927,90.834167 C207.432419,90.305542 198.585190,82.726425 196.990112,72.316605 C195.066238,59.761024 200.958557,48.735371 212.308899,45.511654 C220.705978,43.126728 228.796738,44.702991 235.617401,51.416374 M226.710770,59.037781 C224.500229,55.403278 221.021240,54.559521 217.223404,55.227055 C213.303741,55.916012 211.130585,58.656075 209.900848,63.007904 C215.556793,63.007904 220.795670,63.082722 226.022415,62.865482 C226.439285,62.848156 226.772247,60.812366 226.710770,59.037781 z"/><path fill="#ED6948" d="M172.850861,45.355858 C177.478439,45.725208 177.478439,45.725208 178.503357,52.847752 C182.883148,48.057198 187.467941,44.117004 194.613022,44.789433 C194.613022,48.791721 194.613022,52.956398 194.613022,57.084667 C194.195526,57.270256 193.896545,57.522789 193.603271,57.516346 C179.534576,57.207169 178.561935,63.295349 178.853897,73.751320 C178.997177,78.882263 178.878738,84.020508 178.878738,89.514259 C174.704239,89.514259 170.960999,89.514259 166.355362,89.514259 C166.355362,86.755188 166.355362,83.990074 166.355362,81.224968 C166.355362,71.225266 166.628372,61.214943 166.239685,51.230377 C166.046677,46.272167 167.730042,44.555309 172.850861,45.355858 z"/><path fill="#EC613F" d="M361.275665,60.202583 C359.968445,63.673603 358.372833,66.885544 358.133545,70.195534 C357.679382,76.478020 358.002045,82.816658 358.002045,89.487892 C353.988708,89.487892 350.265137,89.487892 346.190002,89.487892 C346.190002,75.054337 346.190002,60.668663 346.190002,45.938789 C349.536438,45.938789 352.785919,45.938789 356.413147,45.938789 C356.817719,47.829327 357.251190,49.854836 357.926453,53.010395 C362.354095,47.757259 366.988312,44.262573 373.813538,44.905918 C373.813538,48.845547 373.813538,52.753826 373.813538,56.373184 C369.666809,57.600376 365.633270,58.794079 361.275665,60.202583 z"/></svg>
+    </a>
+  </div>
+ 
+  <!-- CENTER -->
+<div class="hidden md:flex gap-8 text-gray-600 font-medium">
+ 
+    <a href="#" class="hover:text-[#ff5327] transition">Home</a>
+<a href="#" class="hover:text-[#ff5327] transition">Grants</a>
+<a href="#" class="hover:text-[#ff5327] transition">EV Programs</a>
+<a href="#" class="hover:text-[#ff5327] transition">Applications</a>
+<a href="#" class="hover:text-[#ff5327] transition">Support</a>
+ 
+  </div>
+ 
+  <!-- RIGHT -->
+<div class="flex items-center gap-5">
+ 
+    <i class="fa-regular fa-bell text-xl text-gray-600 cursor-pointer"></i>
+ 
+    <div class="flex items-center gap-3 bg-orange-50 px-4 py-2 rounded-full border border-orange-100">
+ 
+      <img src="https://i.pravatar.cc/100"
+           class="w-10 h-10 rounded-full"/>
+ 
+      <div>
+<p class="font-semibold text-gray-800">
+          Davies Andrew
+</p>
+ 
+        <span class="text-xs text-white px-2 py-1 rounded-full" style="background-color:#ff5327;">
+          Applicant
+</span>
+</div>
+ 
+    </div>
+ 
+  </div>
+ 
+</nav>
+ 
+<!-- HERO -->
+<section class="pt-36 px-8 md:px-16 pb-20">
+ 
+  <div class="grid md:grid-cols-2 gap-12 items-center">
+ 
+    <!-- LEFT -->
+<div class="fade-up">
+ 
+      <span class="bg-orange-100 text-[#ff5327] px-4 py-2 rounded-full text-sm font-semibold">
+        Government Funding Programs
+</span>
+ 
+      <h1 class="text-5xl md:text-6xl font-bold leading-tight mt-6 text-gray-900">
+ 
+        Discover Grants
+        for EV Charging,
+        Sustainability &
+        Innovation
+ 
+      </h1>
+ 
+      <p class="mt-6 text-xl text-gray-600 leading-relaxed">
+ 
+        Explore government-backed grants,
+        subsidies, and financial assistance
+        programs tailored for businesses
+        and individuals.
+ 
+      </p>
+ 
+      <div class="mt-8 flex gap-5">
+ 
+        <button onclick="showGrantsForm()" class="text-white px-8 py-4 rounded-2xl font-semibold shadow-lg transition" style="background-color:#ff5327;cursor:pointer;" onmouseover="this.style.backgroundColor='#cc3d1a'" onmouseout="this.style.backgroundColor='#ff5327'">
+ 
+          Explore Grants
+ 
+        </button>
+ 
+        <button class="bg-white border border-orange-200 hover:bg-orange-50 text-[#ff5327] px-8 py-4 rounded-2xl font-semibold transition">
+ 
+          Track Application
+ 
+        </button>
+ 
+      </div>
+ 
+    </div>
+ 
+    <!-- RIGHT -->
+<div class="fade-up">
+ 
+      <div class="bg-white rounded-3xl p-10 border border-orange-100 shadow-2xl shadow-orange-100">
+ 
+        <div class="flex justify-between items-center mb-8">
+ 
+          <div>
+ 
+            <p class="text-gray-500">
+              Active Funding Pool
+</p>
+ 
+            <h2 class="text-4xl font-bold text-gray-900 mt-2">
+              £245M
+</h2>
+ 
+          </div>
+ 
+          <div class="bg-orange-100 text-[#ff5327] px-4 py-2 rounded-full text-sm font-semibold">
+ 
+            Open Applications
+ 
+          </div>
+ 
+        </div>
+ 
+        <div class="space-y-6">
+ 
+          <div>
+ 
+            <div class="flex justify-between mb-2">
+<span>EV Infrastructure Grants</span>
+<span>82%</span>
+</div>
+ 
+            <div class="w-full bg-gray-100 rounded-full h-3">
+<div class="bg-green-500 h-3 rounded-full w-[82%]"></div>
+</div>
+ 
+          </div>
+ 
+          <div>
+ 
+            <div class="flex justify-between mb-2">
+<span>Sustainability Grants</span>
+<span>67%</span>
+</div>
+ 
+            <div class="w-full bg-gray-100 rounded-full h-3">
+<div class="bg-blue-500 h-3 rounded-full w-[67%]"></div>
+</div>
+ 
+          </div>
+ 
+          <div>
+ 
+            <div class="flex justify-between mb-2">
+<span>SME Innovation Grants</span>
+<span>54%</span>
+</div>
+ 
+            <div class="w-full bg-gray-100 rounded-full h-3">
+<div class="h-3 rounded-full w-[54%]" style="background-color:#ff5327;"></div>
+</div>
+ 
+          </div>
+ 
+        </div>
+ 
+      </div>
+ 
+    </div>
+ 
+  </div>
+ 
+</section>
+ 
+<!-- FEATURED GRANTS -->
+<section class="px-8 md:px-16 pb-20">
+ 
+  <div class="flex justify-between items-center mb-10">
+ 
+    <div>
+<h2 class="text-4xl font-bold text-gray-900">
+        Featured Grant Programs
+</h2>
+ 
+      <p class="text-gray-500 mt-2">
+        Apply digitally and track approval status in real time.
+</p>
+</div>
+ 
+  </div>
+ 
+  <div class="grid md:grid-cols-2 xl:grid-cols-3 gap-8">
+ 
+    <!-- CARD -->
+<div class="grant-card bg-white rounded-3xl border border-green-100 shadow-lg overflow-hidden transition duration-300">
+ 
+      <div class="h-52 bg-gradient-to-r from-green-500 to-emerald-400 flex items-center justify-center">
+ 
+        <i class="fa-solid fa-charging-station text-7xl text-white"></i>
+ 
+      </div>
+ 
+      <div class="p-8">
+ 
+        <div class="flex justify-between items-center">
+ 
+          <span class="bg-green-100 text-green-700 px-3 py-1 rounded-full text-xs font-semibold">
+            EV Grant
+</span>
+ 
+          <span class="text-sm text-gray-500">
+            Closing in 18 Days
+</span>
+ 
+        </div>
+ 
+        <h3 class="text-2xl font-bold mt-5">
+          EV Charging Infrastructure Grant
+</h3>
+ 
+        <p class="mt-4 text-gray-600 leading-relaxed">
+ 
+          Funding support for installation
+          of EV charging stations for homes,
+          apartments and commercial properties.
+ 
+        </p>
+ 
+        <div class="mt-6 flex justify-between items-center">
+ 
+          <div>
+ 
+            <p class="text-sm text-gray-500">
+              Funding Upto
+</p>
+ 
+            <h4 class="text-2xl font-bold text-green-600">
+              £50,000
+</h4>
+ 
+          </div>
+ 
+          <button class="bg-green-600 hover:bg-green-700 text-white px-5 py-3 rounded-xl font-semibold transition">
+ 
+            Apply Now
+ 
+          </button>
+ 
+        </div>
+ 
+      </div>
+ 
+    </div>
+ 
+    <!-- CARD -->
+<div class="grant-card bg-white rounded-3xl border border-blue-100 shadow-lg overflow-hidden transition duration-300">
+ 
+      <div class="h-52 bg-gradient-to-r from-blue-500 to-cyan-400 flex items-center justify-center">
+ 
+        <i class="fa-solid fa-leaf text-7xl text-white"></i>
+ 
+      </div>
+ 
+      <div class="p-8">
+ 
+        <div class="flex justify-between items-center">
+ 
+          <span class="bg-blue-100 text-blue-700 px-3 py-1 rounded-full text-xs font-semibold">
+            Sustainability
+</span>
+ 
+          <span class="text-sm text-gray-500">
+            Closing in 25 Days
+</span>
+ 
+        </div>
+ 
+        <h3 class="text-2xl font-bold mt-5">
+          Green Business Sustainability Grant
+</h3>
+ 
+        <p class="mt-4 text-gray-600 leading-relaxed">
+ 
+          Grants for businesses implementing
+          renewable energy and carbon reduction initiatives.
+ 
+        </p>
+ 
+        <div class="mt-6 flex justify-between items-center">
+ 
+          <div>
+ 
+            <p class="text-sm text-gray-500">
+              Funding Upto
+</p>
+ 
+            <h4 class="text-2xl font-bold text-blue-600">
+              £120,000
+</h4>
+ 
+          </div>
+ 
+          <button class="bg-blue-600 hover:bg-blue-700 text-white px-5 py-3 rounded-xl font-semibold transition">
+ 
+            Apply Now
+ 
+          </button>
+ 
+        </div>
+ 
+      </div>
+ 
+    </div>
+ 
+    <!-- CARD -->
+<div class="grant-card bg-white rounded-3xl border border-purple-100 shadow-lg overflow-hidden transition duration-300">
+ 
+      <div class="h-52 bg-gradient-to-r from-purple-500 to-pink-400 flex items-center justify-center">
+ 
+        <i class="fa-solid fa-lightbulb text-7xl text-white"></i>
+ 
+      </div>
+ 
+      <div class="p-8">
+ 
+        <div class="flex justify-between items-center">
+ 
+          <span class="bg-purple-100 text-purple-700 px-3 py-1 rounded-full text-xs font-semibold">
+            Innovation
+</span>
+ 
+          <span class="text-sm text-gray-500">
+            Closing in 12 Days
+</span>
+ 
+        </div>
+ 
+        <h3 class="text-2xl font-bold mt-5">
+          SME Innovation & Technology Grant
+</h3>
+ 
+        <p class="mt-4 text-gray-600 leading-relaxed">
+ 
+          Financial assistance for startups
+          and SMEs investing in AI,
+          automation and technology innovation.
+ 
+        </p>
+ 
+        <div class="mt-6 flex justify-between items-center">
+ 
+          <div>
+ 
+            <p class="text-sm text-gray-500">
+              Funding Upto
+</p>
+ 
+            <h4 class="text-2xl font-bold text-purple-600">
+              £80,000
+</h4>
+ 
+          </div>
+ 
+          <button class="bg-purple-600 hover:bg-purple-700 text-white px-5 py-3 rounded-xl font-semibold transition">
+ 
+            Apply Now
+ 
+          </button>
+ 
+        </div>
+ 
+      </div>
+ 
+    </div>
+ 
+  </div>
+ 
+</section>
+ 
+<!-- APPLICATION PROCESS -->
+<section class="px-8 md:px-16 pb-24">
+ 
+  <div class="bg-white rounded-[40px] p-10 md:p-16 border border-orange-100 shadow-2xl">
+ 
+    <div class="text-center mb-16">
+ 
+      <h2 class="text-5xl font-bold text-gray-900">
+        Simple Digital Application Journey
+</h2>
+ 
+      <p class="text-gray-500 mt-4 text-lg">
+        Apply for grants digitally in a few easy steps.
+</p>
+ 
+    </div>
+ 
+    <div class="grid md:grid-cols-4 gap-10">
+ 
+      <!-- STEP -->
+<div class="text-center">
+ 
+        <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+ 
+          <i class="fa-solid fa-user-check text-3xl text-[#ff5327]"></i>
+ 
+        </div>
+ 
+        <h3 class="mt-6 text-2xl font-bold">
+          Register
+</h3>
+ 
+        <p class="mt-3 text-gray-500">
+          Create your secure applicant profile.
+</p>
+ 
+      </div>
+ 
+      <!-- STEP -->
+<div class="text-center">
+ 
+        <div class="w-20 h-20 bg-blue-100 rounded-full flex items-center justify-center mx-auto">
+ 
+          <i class="fa-solid fa-magnifying-glass text-3xl text-blue-600"></i>
+ 
+        </div>
+ 
+        <h3 class="mt-6 text-2xl font-bold">
+          Explore Grants
+</h3>
+ 
+        <p class="mt-3 text-gray-500">
+          Browse eligible government funding programs.
+</p>
+ 
+      </div>
+ 
+      <!-- STEP -->
+<div class="text-center">
+ 
+        <div class="w-20 h-20 bg-purple-100 rounded-full flex items-center justify-center mx-auto">
+ 
+          <i class="fa-solid fa-file-arrow-up text-3xl text-purple-600"></i>
+ 
+        </div>
+ 
+        <h3 class="mt-6 text-2xl font-bold">
+          Submit Documents
+</h3>
+ 
+        <p class="mt-3 text-gray-500">
+          Upload required verification documents securely.
+</p>
+ 
+      </div>
+ 
+      <!-- STEP -->
+<div class="text-center">
+ 
+        <div class="w-20 h-20 bg-orange-100 rounded-full flex items-center justify-center mx-auto">
+ 
+          <i class="fa-solid fa-circle-check text-3xl text-orange-600"></i>
+ 
+        </div>
+ 
+        <h3 class="mt-6 text-2xl font-bold">
+          Receive Approval
+</h3>
+ 
+        <p class="mt-3 text-gray-500">
+          Track application status and funding disbursement.
+</p>
+ 
+      </div>
+ 
+    </div>
+ 
+  </div>
+ 
+</section>
+ 
+<!-- AI ASSISTANT -->
+<div class="fixed bottom-8 right-8 z-50">
+ 
+  <div class="chatbot w-20 h-20 rounded-full flex items-center justify-center shadow-2xl cursor-pointer" style="background:linear-gradient(to right,#ff5327,#ff7a54);">
+ 
+    <i class="fa-solid fa-robot text-3xl text-white"></i>
+ 
+  </div>
+ 
+</div>
+ 
+<!-- FOOTER -->
+<footer id="siteFooter" class="bg-white border-t border-orange-100 px-8 md:px-16 py-10">
+ 
+  <div class="grid md:grid-cols-4 gap-10">
+ 
+    <div>
+ 
+      <h3 class="text-2xl font-bold" style="color:#ff5327;">
+        GovConnect
+</h3>
+ 
+      <p class="mt-4 text-gray-500">
+        Government digital funding &
+        grant management platform.
+</p>
+ 
+    </div>
+ 
+    <div>
+ 
+      <h4 class="font-semibold mb-4 text-gray-900">
+        Grant Programs
+</h4>
+ 
+      <ul class="space-y-2 text-gray-500">
+<li>EV Grants</li>
+<li>Sustainability</li>
+<li>Innovation Funding</li>
+<li>Business Support</li>
+</ul>
+ 
+    </div>
+ 
+    <div>
+ 
+      <h4 class="font-semibold mb-4 text-gray-900">
+        Support
+</h4>
+ 
+      <ul class="space-y-2 text-gray-500">
+<li>Contact Support</li>
+<li>FAQs</li>
+<li>Accessibility</li>
+<li>Privacy Policy</li>
+</ul>
+ 
+    </div>
+ 
+    <div>
+ 
+      <h4 class="font-semibold mb-4 text-gray-900">
+        Security
+</h4>
+ 
+      <p class="text-gray-500">
+        Government Certified • Secure Uploads • AI Fraud Monitoring
+</p>
+ 
+    </div>
+ 
+  </div>
+ 
+  <div class="border-t border-orange-100 mt-10 pt-6 text-center text-gray-400">
+ 
+    © 2026 GovConnect Grants Portal. All Rights Reserved.
+ 
+  </div>
+ 
+</footer>
+
+<!-- ── Pega Grants Application Form (shown on Explore Grants click) ── -->
+<script src='https://areteans-i25-plf.pegatsdemo.com/prweb/PRRestService/c11nsvc/v1/pega-embed.js'></script>
+
+<div id="pegaSection" style="display:none; background:#f2f5f6; min-height:calc(100vh - 80px); padding:120px 20px 48px;">
+  <div style="max-width:860px; margin:0 auto;">
+
+    <!-- Back link -->
+    <button onclick="hideGrantsForm()" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:#ff5327;font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;margin-bottom:20px;padding:0;">
+      &#8592; Back to Portal
+    </button>
+
+    <!-- Card with orange top bar -->
+    <div style="background:#fff;border-radius:8px;box-shadow:0 1px 6px rgba(0,0,0,0.08);overflow:hidden;">
+      <div style="height:4px;background:#ff5327;width:100%;"></div>
+      <pega-embed
+        id='theEmbed'
+        action='createCase'
+        caseTypeID='Cred-Grants-Work-GrantsApplicationLifecycle'
+        themeID='Credera'
+        casePage='assignment'
+        assignmentHeader='false'
+        appAlias='grants-1'
+        pegaServerUrl='https://areteans-i25-plf.pegatsdemo.com/prweb/'
+        autoReauth='true'
+        authService='pega'
+        clientId='45323750614743674068'
+        style='width:100%'>
+      </pega-embed>
+    </div>
+
+  </div>
+</div>
+
+<script>
+  function showGrantsForm() {
+    // Hide all main content sections (between nav and footer)
+    document.querySelectorAll('section').forEach(function(s) {
+      s.style.display = 'none';
+    });
+    // Hide the floating chatbot
+    var chatbot = document.querySelector('.fixed.bottom-8');
+    if (chatbot) chatbot.style.display = 'none';
+    // Hide footer
+    var footer = document.getElementById('siteFooter');
+    if (footer) footer.style.display = 'none';
+    // Show pega section (header nav remains visible)
+    document.getElementById('pegaSection').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function hideGrantsForm() {
+    // Hide pega section
+    document.getElementById('pegaSection').style.display = 'none';
+    // Restore all sections
+    document.querySelectorAll('section').forEach(function(s) {
+      s.style.display = '';
+    });
+    // Restore chatbot
+    var chatbot = document.querySelector('.fixed.bottom-8');
+    if (chatbot) chatbot.style.display = '';
+    // Restore footer
+    var footer = document.getElementById('siteFooter');
+    if (footer) footer.style.display = '';
+    window.scrollTo(0, 0);
+  }
+</script>
+
+</body>
+</html>
