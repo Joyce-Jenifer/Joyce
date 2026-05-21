@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<title>Grants Application</title>
+<title>Grant Application</title>
  
   <!-- Google Font -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -94,12 +94,12 @@
  
     <div class="flex items-center gap-3 bg-orange-50 px-4 py-2 rounded-full border border-orange-100">
  
-      <img src="https://i.pravatar.cc/100"
+      <img src="https://i.pravatar.cc/100?img=47"
            class="w-10 h-10 rounded-full"/>
  
       <div>
 <p class="font-semibold text-gray-800">
-          Finley Brooks
+          Davies Andrew
 </p>
  
         <span class="text-xs text-white px-2 py-1 rounded-full" style="background-color:#ff5327;">
@@ -629,8 +629,26 @@
 <!-- ── Pega Grants Application Form (shown on Explore Grants click) ── -->
 <script src='https://areteans-i25-plf.pegatsdemo.com/prweb/PRRestService/c11nsvc/v1/pega-embed.js'></script>
 
+<!-- THANK YOU SCREEN -->
+<div id="thankYouSection" style="display:none; background:#f2f5f6; min-height:calc(100vh - 80px); padding:120px 20px 48px;">
+  <div style="width:85%; margin:0 auto; display:flex; justify-content:center; align-items:center; min-height:60vh;">
+    <div style="background:#fff; border-radius:16px; box-shadow:0 4px 24px rgba(0,0,0,0.10); padding:64px 48px; text-align:center; max-width:560px; width:100%;">
+
+      <!-- Green tick circle -->
+      <div style="width:96px; height:96px; background:#dcfce7; border-radius:50%; display:flex; align-items:center; justify-content:center; margin:0 auto 32px;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="#16a34a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="52" height="52">
+          <polyline points="20 6 9 17 4 12"></polyline>
+        </svg>
+      </div>
+
+      <h2 style="font-family:'Inter',sans-serif; font-size:2rem; font-weight:700; color:#111827; margin:0 0 16px;">Thank You!</h2>
+      <p style="font-family:'Inter',sans-serif; font-size:1.1rem; color:#6b7280; line-height:1.7; margin:0;">Your application has been submitted successfully.</p>
+    </div>
+  </div>
+</div>
+
 <div id="pegaSection" style="display:none; background:#f2f5f6; min-height:calc(100vh - 80px); padding:120px 20px 48px;">
-  <div style="max-width:860px; margin:0 auto;">
+  <div style="width:85%; margin:0 auto;">
 
     <!-- Back link -->
     <button onclick="hideGrantsForm()" style="display:flex;align-items:center;gap:6px;background:none;border:none;color:#ff5327;font-family:'Inter',sans-serif;font-size:0.9rem;font-weight:600;cursor:pointer;margin-bottom:20px;padding:0;">
@@ -678,9 +696,16 @@
     window.scrollTo(0, 0);
   }
 
-  function hideGrantsForm() {
-    // Hide pega section
+  function showThankYou() {
     document.getElementById('pegaSection').style.display = 'none';
+    document.getElementById('thankYouSection').style.display = 'block';
+    window.scrollTo(0, 0);
+  }
+
+  function hideGrantsForm() {
+    // Hide pega section and thank you
+    document.getElementById('pegaSection').style.display = 'none';
+    document.getElementById('thankYouSection').style.display = 'none';
     // Restore all sections
     document.querySelectorAll('section').forEach(function(s) {
       s.style.display = '';
@@ -693,6 +718,32 @@
     if (footer) footer.style.display = '';
     window.scrollTo(0, 0);
   }
+
+  // ─── Detect Pega form completion via shadow DOM polling ───
+  var grantsFlowCompleted = false;
+
+  function checkPegaCompletion() {
+    if (grantsFlowCompleted) return;
+    var embed = document.getElementById('theEmbed');
+    if (!embed || !embed.shadowRoot) return;
+    var text = embed.shadowRoot.textContent || '';
+    // Detect completion keywords or "open tasks" with no actionable items
+    if (/case\s*created|submitted\s*successfully|confirmation|thank\s*you/i.test(text) ||
+        (/open\s*tasks/i.test(text) && !/submit/i.test(text) && !/previous/i.test(text))) {
+      grantsFlowCompleted = true;
+      showThankYou();
+    }
+  }
+
+  // Start observing once embed shadow DOM is available
+  (function observeEmbed() {
+    var embed = document.getElementById('theEmbed');
+    if (!embed) { setTimeout(observeEmbed, 500); return; }
+    if (!embed.shadowRoot) { setTimeout(observeEmbed, 500); return; }
+    new MutationObserver(checkPegaCompletion).observe(embed.shadowRoot, { childList: true, subtree: true, characterData: true });
+    // Also poll as fallback
+    setInterval(checkPegaCompletion, 2000);
+  })();
 </script>
 
 </body>
